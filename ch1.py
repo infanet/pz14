@@ -1,16 +1,30 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+# 1 задача
+# В отсортированном массиве с дубликатами найти индекс первого вхождения target. Если нет — -1
+# lst = [1,1,1,2,3,3,3,4,5,6,6,6,6,7,8,9,9]
+# find_first_index(lst, 3) -> 4
 
 
-# Press the green button in the gutter to run the script.
+
+
+def find_first_index(lst, target):
+    left, right = 0, len(lst) - 1
+    result = -1
+
+    while left <= right:
+        mid = (left + right) // 2
+
+        if lst[mid] == target:
+            result = mid
+            right = mid - 1
+        elif lst[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return result
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    lst = [1, 1, 1, 2, 3, 3, 3, 4, 5, 6, 6, 6, 6, 7, 8, 9, 9]
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    assert find_first_index(lst, 3) == 4
+    print("OK")
